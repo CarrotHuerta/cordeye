@@ -136,6 +136,9 @@
     <div class="bg-glow top-[-200px] left-[-200px]"></div>
     <div class="bg-glow bottom-[20%] right-[-200px]" style="background: radial-gradient(circle, rgba(139,92,246,0.05) 0%, rgba(2,6,23,0) 70%);"></div>
 
+    <!-- LANDING VIEW -->
+    <div id="landing-view" class="flex flex-col min-h-screen relative w-full transition-opacity duration-500">
+
     <!-- Header / Navbar -->
     <header class="py-6 px-4 sm:px-8 flex justify-between items-center z-10 max-w-7xl mx-auto w-full border-b border-white/5">
         <div class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
@@ -146,7 +149,7 @@
             <a href="#beneficios" class="hover:text-white transition-colors">Beneficios</a>
             <a href="#planes" class="hover:text-white transition-colors">Planes</a>
         </nav>
-        <a href="#registro" class="text-sm font-semibold bg-white/10 hover:bg-white/20 px-5 py-2.5 rounded-full transition-colors">
+        <a href="#planes" class="text-sm font-semibold bg-white/10 hover:bg-white/20 px-5 py-2.5 rounded-full transition-colors">
             Early Access
         </a>
     </header>
@@ -168,11 +171,11 @@
                 Transforma cualquier equipo básico en una estación de trabajo de altísimo rendimiento. Diseñado para creativos, desarrolladores y empresas en Latinoamérica con latencia imperceptible.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#registro" class="btn-primary text-white font-semibold text-lg px-8 py-4 rounded-full w-full sm:w-auto">
+                <a href="#planes" class="btn-primary text-white font-semibold text-lg px-8 py-4 rounded-full w-full sm:w-auto">
                     Reserva tu cupo hoy
                 </a>
-                <a href="#planes" class="text-slate-300 font-semibold text-lg px-8 py-4 rounded-full hover:bg-white/5 transition-colors border border-transparent hover:border-white/10 w-full sm:w-auto">
-                    Ver planes
+                <a href="#beneficios" class="text-slate-300 font-semibold text-lg px-8 py-4 rounded-full hover:bg-white/5 transition-colors border border-transparent hover:border-white/10 w-full sm:w-auto">
+                    Ver beneficios
                 </a>
             </div>
         </section>
@@ -223,7 +226,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
 
                 <!-- Plan 1: Básico -->
-                <div class="pricing-card p-8 rounded-2xl hover:-translate-y-1 transition-transform">
+                <div class="pricing-card p-8 rounded-2xl hover:-translate-y-1 transition-transform flex flex-col">
                     <div class="pricing-header-bar bg-brand-purple"></div>
                     <div class="text-brand-purple text-center">
                         <span class="pricing-tier-label text-brand-purple">SaaS mensual</span>
@@ -232,13 +235,14 @@
                     <div class="text-center mb-8">
                         <span class="text-4xl font-bold text-brand-purple">$ 29</span><span class="text-slate-400">/mes</span>
                     </div>
-                    <p class="text-slate-400 text-sm text-center flex-grow">
+                    <p class="text-slate-400 text-sm text-center mb-8 flex-grow">
                         Edición fotográfica, programación, tareas medias. Acceso estable y predecible.
                     </p>
+                    <button onclick="openModal('Plan Básico', '$ 29/mes')" class="w-full py-3 rounded-lg border border-brand-purple text-brand-purple hover:bg-brand-purple hover:text-white transition-colors text-sm font-semibold">Seleccionar Plan</button>
                 </div>
 
                 <!-- Plan 2: Pro -->
-                <div class="pricing-card p-8 rounded-2xl transform scale-105 border-brand-blue shadow-lg shadow-brand-blue/10 relative z-10">
+                <div class="pricing-card p-8 rounded-2xl transform scale-105 border-brand-blue shadow-lg shadow-brand-blue/10 relative z-10 flex flex-col">
                     <div class="pricing-header-bar bg-brand-blue"></div>
                     <div class="absolute top-0 right-0 bg-brand-blue text-xs font-bold px-3 py-1 rounded-bl-lg text-white">POPULAR</div>
                     <div class="text-brand-blue text-center mt-2">
@@ -248,13 +252,14 @@
                     <div class="text-center mb-8">
                         <span class="text-4xl font-bold text-brand-blue">$ 79</span><span class="text-slate-400">/mes</span>
                     </div>
-                    <p class="text-slate-400 text-sm text-center flex-grow">
+                    <p class="text-slate-400 text-sm text-center mb-8 flex-grow">
                         GPUs de última generación para renderizado 3D, simulaciones y edición 4K/8K.
                     </p>
+                    <button onclick="openModal('Plan Pro / Workstation', '$ 79/mes')" class="w-full py-3 rounded-lg bg-brand-blue text-white hover:bg-blue-500 transition-colors text-sm font-semibold shadow-lg shadow-brand-blue/20">Seleccionar Plan</button>
                 </div>
 
                 <!-- Plan 3: Pay as you go -->
-                <div class="pricing-card p-8 rounded-2xl hover:-translate-y-1 transition-transform">
+                <div class="pricing-card p-8 rounded-2xl hover:-translate-y-1 transition-transform flex flex-col">
                     <div class="pricing-header-bar bg-brand-orange"></div>
                     <div class="text-brand-orange text-center">
                         <span class="pricing-tier-label text-brand-orange">Por horas</span>
@@ -263,13 +268,14 @@
                     <div class="text-center mb-8">
                         <span class="text-4xl font-bold text-brand-orange">$ 1.5</span><span class="text-slate-400">/hora</span>
                     </div>
-                    <p class="text-slate-400 text-sm text-center flex-grow">
+                    <p class="text-slate-400 text-sm text-center mb-8 flex-grow">
                         Picos de rendimiento bajo demanda. Ideal para exportar proyectos puntuales.
                     </p>
+                    <button onclick="openModal('Pay-as-you-go', '$ 1.5/hora')" class="w-full py-3 rounded-lg border border-brand-orange text-brand-orange hover:bg-brand-orange hover:text-white transition-colors text-sm font-semibold">Seleccionar Plan</button>
                 </div>
 
                 <!-- Plan 4: Empresarial -->
-                <div class="pricing-card p-8 rounded-2xl hover:-translate-y-1 transition-transform">
+                <div class="pricing-card p-8 rounded-2xl hover:-translate-y-1 transition-transform flex flex-col">
                     <div class="pricing-header-bar bg-brand-green"></div>
                     <div class="text-brand-green text-center">
                         <span class="pricing-tier-label text-brand-green">Corporativo</span>
@@ -278,116 +284,19 @@
                     <div class="text-center mb-8 flex items-center justify-center h-[40px]">
                         <span class="text-2xl font-bold text-brand-green">A medida</span>
                     </div>
-                    <p class="text-slate-400 text-sm text-center flex-grow">
+                    <p class="text-slate-400 text-sm text-center mb-8 flex-grow">
                         Paquetes para estudios y empresas. Gestión centralizada de múltiples VMs.
                     </p>
+                    <button onclick="openModal('Plan Empresarial', 'A medida')" class="w-full py-3 rounded-lg border border-brand-green text-brand-green hover:bg-brand-green hover:text-white transition-colors text-sm font-semibold">Contactar Ventas</button>
                 </div>
 
             </div>
-        </section>
-
-        <!-- Registration Form Section -->
-        <section id="registro" class="w-full max-w-3xl mx-auto px-4 mb-24 relative">
-            <div class="bg-[#0a0f1c] border border-slate-800 p-8 md:p-12 rounded-3xl relative z-10 shadow-2xl">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl font-bold mb-3 text-white">Asegura tu Cupo (Early Access)</h2>
-                    <p class="text-slate-400 text-sm md:text-base">Únete a la lista de espera exclusiva. Completa tus datos para ser de los primeros en probar la beta. <br><span class="text-brand-blue text-xs mt-1 block">*Esta es una simulación, no se realizarán cobros reales.</span></p>
-                </div>
-
-                <form id="earlyAccessForm" class="space-y-8">
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Left Column: Personal Info -->
-                        <div class="space-y-5">
-                            <h3 class="text-sm font-semibold text-slate-300 uppercase tracking-wider border-b border-slate-800 pb-2">Tus Datos</h3>
-
-                            <div>
-                                <label for="fullName" class="block text-xs font-medium text-slate-400 mb-1.5">Nombre Completo</label>
-                                <input type="text" id="fullName" required class="input-field w-full px-4 py-2.5 rounded-lg text-sm" placeholder="Ej. Juan Pérez">
-                            </div>
-
-                            <div>
-                                <label for="email" class="block text-xs font-medium text-slate-400 mb-1.5">Correo Electrónico</label>
-                                <input type="email" id="email" required class="input-field w-full px-4 py-2.5 rounded-lg text-sm" placeholder="juan@ejemplo.com">
-                            </div>
-
-                            <div>
-                                <label for="profession" class="block text-xs font-medium text-slate-400 mb-1.5">Profesión / Uso Principal</label>
-                                <div class="relative">
-                                    <select id="profession" required class="input-field w-full px-4 py-2.5 rounded-lg appearance-none text-sm">
-                                        <option value="" disabled selected>Selecciona una opción</option>
-                                        <option value="creativo">Creativo / Diseñador (3D, Video)</option>
-                                        <option value="desarrollador">Desarrollador / IA / Data Science</option>
-                                        <option value="pyme">PYME / Institución</option>
-                                        <option value="otro">Otro</option>
-                                    </select>
-                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
-                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right Column: Payment Simulation -->
-                        <div class="space-y-5">
-                            <h3 class="text-sm font-semibold text-slate-300 uppercase tracking-wider border-b border-slate-800 pb-2">Método de Pago</h3>
-
-                            <div>
-                                <label for="cardName" class="block text-xs font-medium text-slate-400 mb-1.5">Nombre en la Tarjeta</label>
-                                <input type="text" id="cardName" required class="input-field w-full px-4 py-2.5 rounded-lg text-sm uppercase" placeholder="JUAN PEREZ">
-                            </div>
-
-                            <div class="relative">
-                                <label for="cardNumber" class="block text-xs font-medium text-slate-400 mb-1.5">Número de Tarjeta</label>
-                                <input type="text" id="cardNumber" required maxlength="19" class="input-field w-full px-4 py-2.5 rounded-lg text-sm" placeholder="0000 0000 0000 0000">
-                                <div id="cardTypeIcon" class="absolute right-3 top-[32px] font-bold text-xs pointer-events-none"></div>
-                            </div>
-
-                            <div class="flex gap-4">
-                                <div class="w-1/2">
-                                    <label for="cardExpiry" class="block text-xs font-medium text-slate-400 mb-1.5">Expiración</label>
-                                    <input type="text" id="cardExpiry" required maxlength="5" class="input-field w-full px-4 py-2.5 rounded-lg text-sm" placeholder="MM/YY">
-                                </div>
-                                <div class="w-1/2">
-                                    <label for="cardCvc" class="block text-xs font-medium text-slate-400 mb-1.5">CVC</label>
-                                    <input type="text" id="cardCvc" required maxlength="4" class="input-field w-full px-4 py-2.5 rounded-lg text-sm" placeholder="123">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Terms -->
-                    <div class="flex items-start pt-4 border-t border-slate-800/50 mt-6">
-                        <div class="flex items-center h-5">
-                            <input id="terms" type="checkbox" required class="w-4 h-4 text-brand-blue bg-slate-900 border-slate-700 rounded focus:ring-brand-blue focus:ring-1 accent-brand-blue cursor-pointer">
-                        </div>
-                        <label for="terms" class="ml-3 text-xs text-slate-400 leading-tight cursor-pointer">
-                            Acepto los <a href="#" class="text-brand-blue hover:underline">términos y condiciones</a> y entiendo que este registro es una fase de prueba sin cobros reales.
-                        </label>
-                    </div>
-
-                    <!-- Success Message (Hidden) -->
-                    <div id="successMessage" class="hidden text-center p-4 bg-brand-green/10 border border-brand-green/30 rounded-lg mt-4">
-                        <p class="text-brand-green font-semibold text-sm">¡Registro exitoso! Bienvenido a Cordeye. Te contactaremos pronto.</p>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <button type="submit" id="submitBtn" class="w-full btn-primary text-white font-semibold py-3.5 rounded-lg mt-6 flex justify-center items-center text-sm">
-                        <span id="submitText">Completar Registro</span>
-                        <div id="loadingSpinner" class="loader hidden ml-3"></div>
-                    </button>
-
-                </form>
-            </div>
-
-            <!-- Glow behind form -->
-            <div class="absolute inset-0 bg-brand-blue opacity-[0.03] blur-3xl z-0 pointer-events-none rounded-3xl"></div>
         </section>
 
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800/60 py-8 text-center text-slate-500 text-xs z-10 bg-[#020617] relative">
+    <footer class="border-t border-slate-800/60 py-8 text-center text-slate-500 text-xs z-10 bg-[#020617] relative mt-auto">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
             <div class="flex items-center gap-2 mb-4 md:mb-0">
                 <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
@@ -400,20 +309,305 @@
             </div>
         </div>
     </footer>
+    </div> <!-- END LANDING VIEW -->
+
+    <!-- PAYMENT MODAL -->
+    <div id="payment-modal" class="fixed inset-0 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 bg-black/80 backdrop-blur-sm p-4 hidden">
+        <div class="bg-[#0a0f1c] border border-slate-800 p-8 rounded-3xl relative w-full max-w-2xl shadow-2xl transform scale-95 transition-transform duration-300" id="payment-modal-content">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold mb-2 text-white">Crear cuenta y Pagar</h2>
+                <p class="text-slate-400 text-sm">Estás adquiriendo: <span id="modal-plan-name" class="font-bold text-brand-blue">Plan</span> por <span id="modal-plan-price" class="text-white font-semibold">Precio</span></p>
+            </div>
+
+            <form id="paymentForm" class="space-y-6">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Left Column: Personal Info -->
+                    <div class="space-y-4">
+                        <h3 class="text-xs font-semibold text-slate-300 uppercase tracking-wider border-b border-slate-800 pb-2">Crear Cuenta</h3>
+
+                        <div>
+                            <label for="fullName" class="block text-xs font-medium text-slate-400 mb-1.5">Nombre Completo</label>
+                            <input type="text" id="fullName" required class="input-field w-full px-4 py-2 rounded-lg text-sm" placeholder="Ej. Juan Pérez">
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-xs font-medium text-slate-400 mb-1.5">Correo Electrónico</label>
+                            <input type="email" id="email" required class="input-field w-full px-4 py-2 rounded-lg text-sm" placeholder="juan@ejemplo.com">
+                        </div>
+
+                        <div>
+                            <label for="profession" class="block text-xs font-medium text-slate-400 mb-1.5">Profesión</label>
+                            <select id="profession" required class="input-field w-full px-4 py-2 rounded-lg text-sm text-slate-300">
+                                <option value="" disabled selected>Selecciona tu profesión...</option>
+                                <option value="creativo">Creativo/Diseñador</option>
+                                <option value="desarrollador">Desarrollador/IA</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="password" class="block text-xs font-medium text-slate-400 mb-1.5">Contraseña</label>
+                            <input type="password" id="password" required class="input-field w-full px-4 py-2 rounded-lg text-sm" placeholder="••••••••">
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Payment Simulation -->
+                    <div class="space-y-4">
+                        <h3 class="text-xs font-semibold text-slate-300 uppercase tracking-wider border-b border-slate-800 pb-2">Método de Pago</h3>
+
+                        <div>
+                            <label for="cardName" class="block text-xs font-medium text-slate-400 mb-1.5">Nombre en la Tarjeta</label>
+                            <input type="text" id="cardName" required class="input-field w-full px-4 py-2 rounded-lg text-sm uppercase" placeholder="JUAN PEREZ">
+                        </div>
+
+                        <div class="relative">
+                            <label for="cardNumber" class="block text-xs font-medium text-slate-400 mb-1.5">Número de Tarjeta</label>
+                            <input type="text" id="cardNumber" required maxlength="19" class="input-field w-full px-4 py-2 rounded-lg text-sm" placeholder="0000 0000 0000 0000">
+                            <div id="cardTypeIcon" class="absolute right-3 top-[28px] font-bold text-xs pointer-events-none"></div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-1/2">
+                                <label for="cardExpiry" class="block text-xs font-medium text-slate-400 mb-1.5">Expiración</label>
+                                <input type="text" id="cardExpiry" required maxlength="5" class="input-field w-full px-4 py-2 rounded-lg text-sm" placeholder="MM/YY">
+                            </div>
+                            <div class="w-1/2">
+                                <label for="cardCvc" class="block text-xs font-medium text-slate-400 mb-1.5">CVC</label>
+                                <input type="text" id="cardCvc" required maxlength="4" class="input-field w-full px-4 py-2 rounded-lg text-sm" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="flex items-start gap-2 mt-4">
+                    <input type="checkbox" id="terms" required class="mt-1 w-4 h-4 bg-[#0f172a] border-slate-700 rounded text-brand-blue focus:ring-brand-blue">
+                    <label for="terms" class="text-xs text-slate-400">Acepto los <a href="#" class="text-brand-blue hover:underline">términos y condiciones</a> y la <a href="#" class="text-brand-blue hover:underline">política de privacidad</a>.</label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn" class="w-full btn-primary text-white font-semibold py-3 rounded-lg mt-6 flex justify-center items-center text-sm">
+                    <span id="submitText">Pagar y Crear Cuenta</span>
+                    <div id="loadingSpinner" class="loader hidden ml-3"></div>
+                </button>
+
+            </form>
+        </div>
+    </div> <!-- END PAYMENT MODAL -->
+
+    <!-- DASHBOARD VIEW -->
+    <div id="dashboard-view" class="hidden flex-col min-h-screen relative w-full opacity-0 transition-opacity duration-500 bg-[#020617]">
+        <!-- Dashboard Header -->
+        <header class="py-4 px-6 border-b border-slate-800 bg-[#0f172a] flex justify-between items-center sticky top-0 z-20">
+            <div class="flex items-center gap-2">
+                <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
+                <span class="font-bold text-white tracking-tight">CORD<span class="text-brand-blue">EYE</span> Portal</span>
+            </div>
+            <div class="flex items-center gap-4 text-sm">
+                <span class="text-slate-400 hidden sm:block" id="user-greeting">Hola, Usuario</span>
+                <button onclick="logout()" class="px-4 py-1.5 rounded-full border border-slate-700 text-slate-300 hover:bg-slate-800 transition-colors">Cerrar Sesión</button>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <main class="flex-grow p-6 lg:p-10 max-w-6xl mx-auto w-full">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-white mb-2">Panel de Control</h1>
+                <p class="text-slate-400">Gestiona tu Máquina Virtual y credenciales de acceso.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Status Card -->
+                <div class="panel p-6 rounded-2xl lg:col-span-2 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-green/10 rounded-full blur-3xl -mr-10 -mt-10"></div>
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h2 class="text-lg font-semibold text-white">Estado de la VM</h2>
+                            <p class="text-sm text-slate-400 mt-1" id="dash-plan-name">Plan Pro / Workstation</p>
+                        </div>
+                        <div class="px-3 py-1 bg-brand-green/20 border border-brand-green/30 text-brand-green rounded-full text-xs font-bold flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
+                            Online (Chile)
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                        <div class="bg-[#020617] p-4 rounded-xl border border-slate-800">
+                            <span class="text-xs text-slate-500 block mb-1">CPU</span>
+                            <span class="font-mono text-white">16 Cores</span>
+                        </div>
+                        <div class="bg-[#020617] p-4 rounded-xl border border-slate-800">
+                            <span class="text-xs text-slate-500 block mb-1">RAM</span>
+                            <span class="font-mono text-white">64 GB</span>
+                        </div>
+                        <div class="bg-[#020617] p-4 rounded-xl border border-slate-800">
+                            <span class="text-xs text-slate-500 block mb-1">GPU</span>
+                            <span class="font-mono text-white">RTX 4090</span>
+                        </div>
+                        <div class="bg-[#020617] p-4 rounded-xl border border-slate-800">
+                            <span class="text-xs text-slate-500 block mb-1">Almacenamiento</span>
+                            <span class="font-mono text-white">1 TB NVMe</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Billing Card -->
+                <div class="panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-lg font-semibold text-white mb-4">Suscripción</h2>
+                        <div class="text-3xl font-bold text-white mb-1" id="dash-plan-price">$ 79<span class="text-sm text-slate-400 font-normal">/mes</span></div>
+                        <p class="text-xs text-slate-500 mb-6">Próximo cobro: <span id="next-billing-date">--/--/----</span></p>
+                    </div>
+                    <button class="w-full py-2 rounded-lg border border-slate-700 text-slate-300 hover:bg-slate-800 transition-colors text-sm">Gestionar Pago</button>
+                </div>
+
+                <!-- Connection Instructions (Moonlight) -->
+                <div class="panel p-6 rounded-2xl lg:col-span-3 border-brand-blue/30 shadow-[0_0_15px_rgba(14,165,233,0.1)]">
+                    <div class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-4">
+                        <div class="w-10 h-10 bg-brand-blue/20 rounded-lg flex items-center justify-center text-brand-blue">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-white">Conectar Dispositivo (Moonlight)</h2>
+                            <p class="text-sm text-slate-400">Sincroniza tu cliente de Moonlight para acceder a la VM.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="space-y-4 text-sm text-slate-300">
+                            <p>1. Descarga e instala <a href="#" class="text-brand-blue hover:underline">Moonlight Client</a> en tu dispositivo local.</p>
+                            <p>2. Abre Moonlight y haz clic en <strong>"Add PC Manually"</strong>.</p>
+                            <p>3. Introduce la siguiente dirección IP estática:</p>
+                            <div class="bg-[#020617] p-3 rounded-lg border border-slate-800 font-mono text-lg text-white flex justify-between items-center">
+                                <span>10.20.0.2</span>
+                                <button class="text-slate-500 hover:text-white" title="Copiar"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg></button>
+                            </div>
+                            <p>4. Moonlight te dará un PIN de 4 dígitos. Introdúcelo a la derecha para emparejar.</p>
+                        </div>
+
+                        <div class="bg-[#020617] p-6 rounded-xl border border-slate-800">
+                            <label class="block text-sm font-medium text-slate-400 mb-3 text-center">Introduce el PIN de sincronización</label>
+                            <div class="flex justify-center gap-3 mb-6" id="pin-container">
+                                <input type="text" maxlength="1" class="w-12 h-14 text-center text-2xl font-bold bg-[#0f172a] border border-slate-700 rounded-lg text-white focus:border-brand-blue focus:outline-none transition-colors" data-index="0">
+                                <input type="text" maxlength="1" class="w-12 h-14 text-center text-2xl font-bold bg-[#0f172a] border border-slate-700 rounded-lg text-white focus:border-brand-blue focus:outline-none transition-colors" data-index="1">
+                                <input type="text" maxlength="1" class="w-12 h-14 text-center text-2xl font-bold bg-[#0f172a] border border-slate-700 rounded-lg text-white focus:border-brand-blue focus:outline-none transition-colors" data-index="2">
+                                <input type="text" maxlength="1" class="w-12 h-14 text-center text-2xl font-bold bg-[#0f172a] border border-slate-700 rounded-lg text-white focus:border-brand-blue focus:outline-none transition-colors" data-index="3">
+                            </div>
+                            <button id="pair-btn" class="w-full btn-primary text-white font-semibold py-3 rounded-lg text-sm transition-all" disabled style="opacity: 0.5; cursor: not-allowed;">
+                                Sincronizar Dispositivo
+                            </button>
+                            <div id="pair-success" class="hidden mt-3 text-center text-brand-green text-sm font-semibold flex justify-center items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                ¡Dispositivo emparejado correctamente!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div> <!-- END DASHBOARD VIEW -->
 
     <!-- JavaScript Logic -->
     <script>
+        // Modal functions (Global scope)
+        const modal = document.getElementById('payment-modal');
+        const modalContent = document.getElementById('payment-modal-content');
+        const landingView = document.getElementById('landing-view');
+        const dashboardView = document.getElementById('dashboard-view');
+
+        function openModal(planName, planPrice) {
+            document.getElementById('modal-plan-name').textContent = planName;
+            document.getElementById('modal-plan-price').textContent = planPrice;
+            document.getElementById('dash-plan-name').textContent = planName;
+            document.getElementById('dash-plan-price').innerHTML = planPrice.replace('/', '<span class="text-sm text-slate-400 font-normal">/</span>');
+
+            modal.classList.remove('hidden');
+            // Trigger reflow
+            void modal.offsetWidth;
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            document.body.style.overflow = '';
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); // Wait for transition
+        }
+
+        function showDashboard(userName) {
+            closeModal();
+
+            // Set user name
+            const firstName = userName.split(' ')[0] || 'Usuario';
+            document.getElementById('user-greeting').textContent = `Hola, ${firstName}`;
+
+            // Set future billing date (30 days from now)
+            const today = new Date();
+            today.setDate(today.getDate() + 30);
+            document.getElementById('next-billing-date').textContent = today.toLocaleDateString('es-ES');
+
+            // Hide landing, show dashboard
+            landingView.classList.add('opacity-0');
+            setTimeout(() => {
+                landingView.classList.add('hidden');
+                dashboardView.classList.remove('hidden');
+                // Trigger reflow
+                void dashboardView.offsetWidth;
+                dashboardView.classList.remove('opacity-0');
+                window.scrollTo(0, 0);
+            }, 500);
+        }
+
+        function logout() {
+            dashboardView.classList.add('opacity-0');
+            setTimeout(() => {
+                dashboardView.classList.add('hidden');
+                landingView.classList.remove('hidden');
+                // Trigger reflow
+                void landingView.offsetWidth;
+                landingView.classList.remove('opacity-0');
+                window.scrollTo(0, 0);
+            }, 500);
+
+            // Reset form and PIN inputs
+            document.getElementById('paymentForm').reset();
+            document.getElementById('cardTypeIcon').innerHTML = '';
+            const pinInputs = document.querySelectorAll('#pin-container input');
+            pinInputs.forEach(input => input.value = '');
+            document.getElementById('pair-btn').disabled = true;
+            document.getElementById('pair-btn').style.opacity = '0.5';
+            document.getElementById('pair-btn').style.cursor = 'not-allowed';
+            document.getElementById('pair-success').classList.add('hidden');
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const cardNumberInput = document.getElementById('cardNumber');
             const cardTypeIcon = document.getElementById('cardTypeIcon');
             const cardExpiryInput = document.getElementById('cardExpiry');
             const cardCvcInput = document.getElementById('cardCvc');
 
-            const form = document.getElementById('earlyAccessForm');
+            const form = document.getElementById('paymentForm');
             const submitBtn = document.getElementById('submitBtn');
             const submitText = document.getElementById('submitText');
             const loadingSpinner = document.getElementById('loadingSpinner');
-            const successMessage = document.getElementById('successMessage');
+
+            // PIN Logic
+            const pinInputs = document.querySelectorAll('#pin-container input');
+            const pairBtn = document.getElementById('pair-btn');
+            const pairSuccess = document.getElementById('pair-success');
 
             // 1. Card Number Formatting & Visual Validation
             cardNumberInput.addEventListener('input', function (e) {
@@ -452,28 +646,92 @@
                 e.target.value = e.target.value.replace(/\D/g, '').substring(0, 4);
             });
 
-            // 4. Form Submission Simulation
+            // 4. Form Submission Simulation (Modal)
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
 
-                successMessage.classList.add('hidden');
+                const userName = document.getElementById('fullName').value;
 
                 submitBtn.disabled = true;
                 submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
-                submitText.textContent = 'Procesando...';
+                submitText.textContent = 'Procesando Pago...';
                 loadingSpinner.classList.remove('hidden');
 
                 setTimeout(() => {
                     submitBtn.disabled = false;
                     submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
-                    submitText.textContent = 'Completar Registro';
+                    submitText.textContent = 'Pagar y Crear Cuenta';
                     loadingSpinner.classList.add('hidden');
 
-                    successMessage.classList.remove('hidden');
-                    form.reset();
-                    cardTypeIcon.innerHTML = '';
+                    showDashboard(userName);
 
                 }, 2000);
+            });
+
+            // 5. PIN Input Logic
+            pinInputs.forEach((input, index) => {
+                // Auto-advance
+                input.addEventListener('input', function(e) {
+                    this.value = this.value.replace(/[^0-9]/g, ''); // Only numbers
+
+                    if (this.value.length === 1) {
+                        if (index < pinInputs.length - 1) {
+                            pinInputs[index + 1].focus();
+                        }
+                    }
+                    checkPinComplete();
+                });
+
+                // Handle backspace
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && this.value.length === 0) {
+                        if (index > 0) {
+                            pinInputs[index - 1].focus();
+                        }
+                    }
+                });
+
+                // Select text on focus
+                input.addEventListener('focus', function() {
+                    this.select();
+                });
+            });
+
+            function checkPinComplete() {
+                let isComplete = true;
+                pinInputs.forEach(input => {
+                    if (input.value.length === 0) isComplete = false;
+                });
+
+                if (isComplete) {
+                    pairBtn.disabled = false;
+                    pairBtn.style.opacity = '1';
+                    pairBtn.style.cursor = 'pointer';
+                } else {
+                    pairBtn.disabled = true;
+                    pairBtn.style.opacity = '0.5';
+                    pairBtn.style.cursor = 'not-allowed';
+                }
+            }
+
+            // 6. Pairing Simulation
+            pairBtn.addEventListener('click', function() {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<div class="loader inline-block"></div> Sincronizando...';
+                this.disabled = true;
+                this.style.opacity = '0.7';
+
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.style.display = 'none';
+                    pairSuccess.classList.remove('hidden');
+
+                    // Disable PIN inputs
+                    pinInputs.forEach(input => {
+                        input.disabled = true;
+                        input.classList.add('opacity-50', 'cursor-not-allowed');
+                    });
+                }, 1500);
             });
         });
     </script>
