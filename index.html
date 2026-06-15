@@ -313,20 +313,20 @@
 
     <!-- PAYMENT MODAL -->
     <div id="payment-modal" class="fixed inset-0 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 bg-black/80 backdrop-blur-sm p-4 hidden">
-        <div class="bg-[#0a0f1c] border border-slate-800 p-8 rounded-3xl relative w-full max-w-2xl shadow-2xl transform scale-95 transition-transform duration-300" id="payment-modal-content">
+        <div class="bg-[#0a0f1c] border border-slate-800 p-6 md:p-8 rounded-3xl relative w-full max-w-2xl shadow-2xl transform scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto" id="payment-modal-content">
             <!-- Close Button -->
             <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
-            <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold mb-2 text-white">Crear cuenta y Pagar</h2>
-                <p class="text-slate-400 text-sm">Estás adquiriendo: <span id="modal-plan-name" class="font-bold text-brand-blue">Plan</span> por <span id="modal-plan-price" class="text-white font-semibold">Precio</span></p>
+            <div class="text-center mb-6 md:mb-8 mt-2 md:mt-0">
+                <h2 id="modal-title" class="text-xl md:text-2xl font-bold mb-2 text-white">Crear cuenta y Pagar</h2>
+                <p class="text-slate-400 text-sm">Estás adquiriendo: <span id="modal-plan-name" class="font-bold text-brand-blue">Plan</span> <span id="modal-plan-price-text">por <span id="modal-plan-price" class="text-white font-semibold">Precio</span></span></p>
             </div>
 
             <form id="paymentForm" class="space-y-6">
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div id="checkout-fields" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Left Column: Personal Info -->
                     <div class="space-y-4">
                         <h3 class="text-xs font-semibold text-slate-300 uppercase tracking-wider border-b border-slate-800 pb-2">Crear Cuenta</h3>
@@ -381,6 +381,44 @@
                                 <label for="cardCvc" class="block text-xs font-medium text-slate-400 mb-1.5">CVC</label>
                                 <input type="text" id="cardCvc" required maxlength="4" class="input-field w-full px-4 py-2 rounded-lg text-sm" placeholder="123">
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enterprise Sales Fields (Hidden by default) -->
+                <div id="sales-fields" class="grid grid-cols-1 md:grid-cols-2 gap-6 hidden">
+                    <div class="space-y-4">
+                        <div>
+                            <label for="salesName" class="block text-xs font-medium text-slate-400 mb-1.5">Nombre Completo</label>
+                            <input type="text" id="salesName" class="input-field w-full px-4 py-2 rounded-lg text-sm sales-input" placeholder="Ej. Ana Gómez">
+                        </div>
+                        <div>
+                            <label for="salesEmail" class="block text-xs font-medium text-slate-400 mb-1.5">Correo Corporativo</label>
+                            <input type="email" id="salesEmail" class="input-field w-full px-4 py-2 rounded-lg text-sm sales-input" placeholder="ana@empresa.com">
+                        </div>
+                        <div>
+                            <label for="salesCompany" class="block text-xs font-medium text-slate-400 mb-1.5">Empresa</label>
+                            <input type="text" id="salesCompany" class="input-field w-full px-4 py-2 rounded-lg text-sm sales-input" placeholder="Nombre de la empresa">
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="salesRole" class="block text-xs font-medium text-slate-400 mb-1.5">Cargo</label>
+                            <input type="text" id="salesRole" class="input-field w-full px-4 py-2 rounded-lg text-sm sales-input" placeholder="Ej. CTO, Director...">
+                        </div>
+                        <div>
+                            <label for="salesSize" class="block text-xs font-medium text-slate-400 mb-1.5">Tamaño de la Empresa</label>
+                            <select id="salesSize" class="input-field w-full px-4 py-2 rounded-lg text-sm text-slate-300 sales-input">
+                                <option value="" disabled selected>Selecciona el tamaño...</option>
+                                <option value="1-10">1-10 empleados</option>
+                                <option value="11-50">11-50 empleados</option>
+                                <option value="51-200">51-200 empleados</option>
+                                <option value="201+">201+ empleados</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="salesMessage" class="block text-xs font-medium text-slate-400 mb-1.5">Requerimientos (Opcional)</label>
+                            <textarea id="salesMessage" rows="2" class="input-field w-full px-4 py-2 rounded-lg text-sm" placeholder="Cuéntanos brevemente qué necesitas"></textarea>
                         </div>
                     </div>
                 </div>
@@ -521,11 +559,48 @@
         const landingView = document.getElementById('landing-view');
         const dashboardView = document.getElementById('dashboard-view');
 
+        let currentMode = 'checkout'; // 'checkout' or 'sales'
+
         function openModal(planName, planPrice) {
             document.getElementById('modal-plan-name').textContent = planName;
             document.getElementById('modal-plan-price').textContent = planPrice;
             document.getElementById('dash-plan-name').textContent = planName;
             document.getElementById('dash-plan-price').innerHTML = planPrice.replace('/', '<span class="text-sm text-slate-400 font-normal">/</span>');
+
+            const checkoutFields = document.getElementById('checkout-fields');
+            const salesFields = document.getElementById('sales-fields');
+            const submitText = document.getElementById('submitText');
+            const modalTitle = document.getElementById('modal-title');
+            const modalPriceText = document.getElementById('modal-plan-price-text');
+
+            // Reset inputs requirements
+            const checkoutInputs = checkoutFields.querySelectorAll('input, select');
+            const salesInputs = document.querySelectorAll('.sales-input');
+
+            if (planName.includes('Empresarial') || planName.includes('Corporativo')) {
+                currentMode = 'sales';
+                modalTitle.textContent = 'Contactar a Ventas';
+                modalPriceText.classList.add('hidden');
+                submitText.textContent = 'Enviar Solicitud';
+
+                checkoutFields.classList.add('hidden');
+                salesFields.classList.remove('hidden');
+
+                checkoutInputs.forEach(input => input.required = false);
+                salesInputs.forEach(input => input.required = true);
+
+            } else {
+                currentMode = 'checkout';
+                modalTitle.textContent = 'Crear cuenta y Pagar';
+                modalPriceText.classList.remove('hidden');
+                submitText.textContent = 'Pagar y Crear Cuenta';
+
+                salesFields.classList.add('hidden');
+                checkoutFields.classList.remove('hidden');
+
+                salesInputs.forEach(input => input.required = false);
+                checkoutInputs.forEach(input => input.required = true);
+            }
 
             modal.classList.remove('hidden');
             // Trigger reflow
@@ -650,22 +725,39 @@
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
 
-                const userName = document.getElementById('fullName').value;
-
                 submitBtn.disabled = true;
                 submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
-                submitText.textContent = 'Procesando Pago...';
                 loadingSpinner.classList.remove('hidden');
 
-                setTimeout(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
-                    submitText.textContent = 'Pagar y Crear Cuenta';
-                    loadingSpinner.classList.add('hidden');
+                if (currentMode === 'sales') {
+                    submitText.textContent = 'Enviando...';
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+                        submitBtn.classList.remove('btn-primary');
+                        submitBtn.classList.add('bg-brand-green');
+                        submitText.textContent = '¡Solicitud Enviada!';
+                        loadingSpinner.classList.add('hidden');
 
-                    showDashboard(userName);
+                        setTimeout(() => {
+                            closeModal();
+                            submitBtn.classList.remove('bg-brand-green');
+                            submitBtn.classList.add('btn-primary');
+                        }, 2000);
+                    }, 1500);
 
-                }, 2000);
+                } else {
+                    const userName = document.getElementById('fullName').value;
+                    submitText.textContent = 'Procesando Pago...';
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+                        submitText.textContent = 'Pagar y Crear Cuenta';
+                        loadingSpinner.classList.add('hidden');
+
+                        showDashboard(userName);
+                    }, 2000);
+                }
             });
 
             // 5. PIN Input Logic
